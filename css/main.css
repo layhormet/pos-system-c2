@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: white;
+}
+
+.top-banner {
+    background-color: rgba(245, 222, 179, 0.697);
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 10px;
+}
+.page {
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    margin-left: 3px;
+    border: none;
+    background-color: white;
+    border: 2px solid teal;
+    border-radius: 10px;
+}
+
+.page button {
+    border: none;
+}
+
+.page:hover,
+.page button:hover,
+.close-btn:hover {
+    cursor: pointer;
+}
+
+.closes {
+    display: flex;
+    align-items: center;
+}
+
+.close-btn {
+    padding: 4px 10px;
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
