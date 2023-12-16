@@ -1,0 +1,280 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: white;
+}
+
+.top-banner {
+    background-color: rgba(245, 222, 179, 0.697);
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 10px;
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    margin-left: 3px;
+    border: none;
+    background-color: white;
+    border: 2px solid teal;
+    border-radius: 10px;
+}
+
+.page button {
+    border: none;
+}
+
+.page:hover,
+.page button:hover,
+.close-btn:hover {
+    cursor: pointer;
+}
+
+.closes {
+    display: flex;
+    align-items: center;
+}
+
+.close-btn {
+    padding: 4px 10px;
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
+
+.banner-search {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 20px;
+}
+
+.search-box {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: rgba(245, 222, 179, 0.071);
+}
+
+.search-box .material-icons {
+    position: absolute;
+    padding: 4px;
+}
+
+.search {
+    width: 85%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 30px;
+    border: 2px solid teal;
+}
+
+.add-product:hover {
+    cursor: pointer;
+}
+
+.add-product {
+    display: flex;
+    align-items: center;
+    border: 2px solid teal;
+    padding: 10px 10px;
+    width: 12%;
+    border-radius: 10px;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 22px;
+    color: teal;
+
+}
+
+.box-product {
+    width: 87%;
+    border-collapse: collapse;
+}
+
+.table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.box-product thead tr td,
+.box-product tbody tr td {
+    padding: 10px 10px;
+    text-align: center;
+}
+
+/* tr:nth-child(even) {
+    background-color: rgba(0, 128, 128, 0.774);
+} */
+.box-product {
+    width: 87%;
+    border-collapse: collapse;
+}
+
+.box-product thead tr th {
+    text-align: center;
+    padding: 26px 10px;
+}
+
+.box-product tbody tr {
+    border-bottom: 2px solid teal;
+}
+
+.box-product thead tr th {
+    background-color: teal;
+    color: white;
+    padding: 26px 5px;
+    border: 1px solid white;
+}
+
+.action {
+    display: flex;
+    justify-content: center;
+}
+
+
+.action .delete {
+    background-color: red;
+    border-radius: 10px;
+    padding: 2px 4px;
+    margin-right: 4px;
+}
+
+.action .delete .material-icons,
+.action .edit .material-icons,
+.action .view .material-icons,
+.action .chart .material-icons {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    color: white;
+}
+
+.action .edit {
+    background-color: rgb(227, 227, 17);
+}
+
+.action .view {
+    background-color: green;
+
+}
+
+.action .chart {
+    background-color: teal;
+
+}
+
+.action .delete,
+.action .edit,
+.action .view,
+.action .chart {
+    border-radius: 10px;
+    padding: 2px 4px;
+    margin-right: 4px;
+}
+#questions-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 10;
+  }
+dialog {
+    position: fixed;
+    top: 2vh;
+    left: 25%;
+    width: 50%;
+    z-index: 100;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+border: 5px solid teal;
+}
+dialog h1{
+    color: black;
+    background-color: teal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+}
+dialog header {
+    color: white;
+    font-size: 1.25rem;
+    width: 100%;
+    padding: 1rem;
+    
+}
+
+dialog section {
+    padding: 1rem;
+}
+
+dialog menu {
+    padding: 0.2rem;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+dialog label {
+    font-weight: bold;
+    display: block;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="number"]
+{
+  width: 100%;
+  padding: 4px;
+  border: 1px solid teal;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+select{
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    background-color: #f0e6fd;
+    outline: none;
+    border-color: var(--main-color-light);
+}
+dialog menu .cancel { 
+    background-color:red;
+    margin-right: 20px;
+}
+dialog menu .cancel ,dialog menu .edit{ 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+dialog menu .edit {
+    background-color: teal;
+    padding: 10px 40px;
+}
