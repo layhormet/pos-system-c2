@@ -9,7 +9,7 @@ let products = [
         id: 1,
         names: "Blouse",
         category: "men",
-        price:10,
+        price: 10,
         quantity: 1,
         stock: 10,
         sold: 5,
@@ -18,7 +18,7 @@ let products = [
         id: 2,
         names: "Shirt",
         category: "woman",
-        price:10,
+        price: 10,
         quantity: 1,
         stock: 10,
         sold: 5,
@@ -27,7 +27,7 @@ let products = [
         id: 3,
         names: "Intimates",
         category: "woman",
-        price:10,
+        price: 10,
         quantity: 1,
         stock: 10,
         sold: 5,
@@ -60,8 +60,9 @@ function laodProduct() {
 
 function randerProduct() {
 
-   
-    tbody.textContent='';
+
+    tbody.textContent = '';
+
     for (let i = 0; i < products.length; i++) {
         let trbody = document.createElement('tr');
         trbody.dataset.id = i;
@@ -133,7 +134,7 @@ function randerProduct() {
         trbody.appendChild(tdCategory);
         trbody.appendChild(tdPrice);
         trbody.appendChild(tdQuantity);
-        
+
         trbody.appendChild(tdStock);
         trbody.appendChild(tdSold);
         trbody.appendChild(tdAction)
@@ -143,7 +144,19 @@ function randerProduct() {
     saveProduct()
 }
 
-
 laodProduct();
 
 randerProduct();
+let product = document.getElementById("search");
+let trs = document.querySelector("tbody")
+function renderProduct() {
+    for (let tr of trs.children) {
+        let productsName = tr.children[1].textContent;
+        if (productsName.includes(product.value)) {
+            tr.style.display="table-row"
+        }else{
+            tr.style.display="none"
+        }
+    }
+}
+product.addEventListener("keyup",renderProduct)
