@@ -2,6 +2,7 @@
 
 let inputName = document.getElementById('productName');
 let inputId = document.getElementById('productId');
+let textForm = document.querySelector('.add-product p');
 let inputPrice = document.getElementById('productPrice');
 let inputQuant = document.getElementById('productQuantity');
 let inputcategory = document.getElementById('categories');
@@ -10,6 +11,10 @@ let inputStock = document.getElementById('stock');
 let addBtn = document.querySelector('.add');
 let tbody = document.querySelector('tbody');
 let table = document.querySelector('table');
+let editBtn = document.querySelector('.cancel');
+let editIndex = null
+
+editBtn.addEventListener('click',editProduct);
 addBtn.addEventListener('click', addProduct);
 
 
@@ -31,6 +36,14 @@ function loadProducts() {
     }
 }
 
+function hide(element){
+    element.style.display = 'none';
+
+}
+function show(element){
+    element.style.display = 'block';
+
+}
 function renderProducts() {
     // call load products 
     loadProducts();
@@ -44,6 +57,7 @@ function renderProducts() {
     // create all table rows depending data from product list 
     for (let product of productsData.products) {
         let tRow = document.createElement('tr');
+        tRow.dataset.id = product.id-1;
 
         let tdID = document.createElement('td');
         tdID.textContent = product.id;
@@ -83,7 +97,7 @@ function renderProducts() {
         edit_icon.classList.add('material-icons');
         edit_icon.textContent = "edit";
         edit_div.appendChild(edit_icon);
-        edit_div.addEventListener('click', editProduct);
+        edit_div.addEventListener('click', updateProduct);
 
         let view_div = document.createElement('div');
         view_div.classList.add('view');
@@ -159,6 +173,35 @@ function addProduct() {
     inputSold.value = '';
     inputStock.value = '';
     
+
+}
+function updateProduct(index){
+    let loadData = localStorage.getItem('productsData');
+    if (loadData === null){
+        productsData = [];
+    }else{
+        productsData = JSON.parse(loadData);
+    }
+    inputName.value = productsData.products[index].name;
+    
+}
+function editProduct(event){
+    loadProducts()
+    let newEdit = {
+        id: editIndex,
+        name: inputName.value,
+        price: inputPrice.value,
+        quantity: inputQuant.value,
+        category: inputcategory.value,
+        sold: inputSold.value,
+        stock: inputStock.value, 
+    }
+    
+    productIndex = newEdit;   
+    textForm.textContent ="Edit Product";
+    hide(addBtn);
+    show(editBtn);
+
 
 }
 
