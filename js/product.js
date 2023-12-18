@@ -187,20 +187,19 @@ function editQuestion(event) {
     let nameProduct = event.target.closest('tr').dataset.id;
     let editBtn = document.querySelector('.edit');
 
-    
-        inputName.value = productsData.products[nameProduct].name;
-        inputPrice.value = productsData.products[nameProduct].price;
-        inputQuant.value = productsData.products[nameProduct].quantity;
-        inputcategory.value = productsData.products[nameProduct].category;
-        inputSold.value = productsData.products[nameProduct].sold;
-        inputStock.value = productsData.products[nameProduct].stock;
+    inputName.value = productsData.products[nameProduct].name;
+    inputPrice.value = productsData.products[nameProduct].price;
+    inputQuant.value = productsData.products[nameProduct].quantity;
+    inputcategory.value = productsData.products[nameProduct].category;
+    inputSold.value = productsData.products[nameProduct].sold;
+    inputStock.value = productsData.products[nameProduct].stock;
 
-        editBtn.addEventListener('click', () => {
-            onCreate(productsData.products[nameProduct]);
-            saveProducts();
-            window.location.reload();
-        });
-    
+    editBtn.addEventListener('click', () => {
+        onCreate(productsData.products[nameProduct]);
+        saveProducts();
+        window.location.reload();
+    });
+
 
     show(editBtn);
     hide(addBtn);
