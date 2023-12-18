@@ -184,6 +184,7 @@ function addProduct() {
 
 }
 function editQuestion(event) {
+    loadProducts();
     let nameProduct = event.target.closest('tr').dataset.id;
     let editBtn = document.querySelector('.edit');
 
