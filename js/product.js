@@ -176,7 +176,6 @@ function deleteProduct(event){
     if (confirmed === true){
         index.remove();
     }
-    productsData.products.splice(index, 1);
     saveProducts();
 
 }
