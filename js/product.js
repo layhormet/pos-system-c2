@@ -169,7 +169,8 @@ function addProduct() {
     productsData.products.push(product);
 
     // save data 
-    saveProducts()
+    saveProducts();
+    window.location.reload();
 
     // clear form 
     inputId = '';
