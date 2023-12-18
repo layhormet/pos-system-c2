@@ -60,7 +60,7 @@ function renderProducts() {
 
     // create new table body element as "tBody"
     let newTbody = document.createElement('tbody');
-
+    let i = 0
     // create all table rows depending data from product list 
     for (let product of productsData.products) {
         let tRow = document.createElement('tr');
@@ -104,7 +104,7 @@ function renderProducts() {
         edit_icon.classList.add('material-icons');
         edit_icon.textContent = "edit";
         edit_div.appendChild(edit_icon);
-        edit_div.addEventListener('click', editQuestion);
+        edit_div.id = i
 
         let view_div = document.createElement('div');
         view_div.classList.add('view');
@@ -136,12 +136,13 @@ function renderProducts() {
 
             newTbody.appendChild(tRow);
             table.appendChild(newTbody);
+            i++
         }
+
 
 
     }
 }
-
 function addProduct() {
     // to check if product id is already set in the list 
     let proId = productsData.latestId;
@@ -183,36 +184,30 @@ function addProduct() {
 
 
 }
-function editQuestion(event) {
-    let nameProduct = event.target.closest('tr').dataset.id;
+function editQuestion(index) {
+
     let editBtn = document.querySelector('.edit');
 
-    inputName.value = productsData.products[nameProduct].name;
-    inputPrice.value = productsData.products[nameProduct].price;
-    inputQuant.value = productsData.products[nameProduct].quantity;
-    inputcategory.value = productsData.products[nameProduct].category;
-    inputSold.value = productsData.products[nameProduct].sold;
-    inputStock.value = productsData.products[nameProduct].stock;
+    inputName.value = productsData.products[index].name;
+    inputPrice.value = productsData.products[index].price;
+    inputQuant.value = productsData.products[index].quantity;
+    inputcategory.value = productsData.products[index].category;
+    inputSold.value = productsData.products[index].sold;
+    inputStock.value = productsData.products[index].stock;
 
     editBtn.addEventListener('click', () => {
-        onCreate(productsData.products[nameProduct]);
+        // onCreate(productsData.products[nameProduct]);
+
+        productsData.products[index].name = inputName.value;
+        productsData.products[index].price = inputPrice.value;
+        productsData.products[index].quantity = inputQuant.value;
+        productsData.products[index].category = inputcategory.value;
+        productsData.products[index].sold = inputSold.value;
+        productsData.products[index].stock = inputStock.value;
+
         saveProducts();
         window.location.reload();
     });
-
-
-    show(editBtn);
-    hide(addBtn);
-    formHeading.textContent = 'Edit Product';
-}
-
-function onCreate(product) {
-    product.name = inputName.value;
-    product.category = inputcategory.value;
-    product.price = inputPrice.value;
-    product.quantity = inputQuant.value;
-    product.stock = inputStock.value;
-    product.sold = inputSold.value;
 }
 
 let productsData = {
@@ -222,10 +217,17 @@ let productsData = {
 loadProducts()
 
 renderProducts()
-
-
-
-
+let editBnt = document.querySelectorAll("tr td .edit")
+console.log(editBnt);
+for (let btn of editBnt) {
+    btn.addEventListener("click", () => {
+        show(editBtn);
+        hide(addBtn);
+        formHeading.textContent = 'Edit Product';
+        editQuestion(btn.id)
+        saveProducts()
+    })
+}
 
 
 
