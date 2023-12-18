@@ -1,5 +1,5 @@
 
-
+// input 
 let inputName = document.getElementById('productName');
 let inputId = document.getElementById('productId');
 let inputPrice = document.getElementById('productPrice');
@@ -7,13 +7,16 @@ let inputQuant = document.getElementById('productQuantity');
 let inputcategory = document.getElementById('categories');
 let inputSold = document.getElementById('sold');
 let inputStock = document.getElementById('stock');
+
+// button 
 let addBtn = document.querySelector('.add');
+
+// tage html 
 let tbody = document.querySelector('tbody');
 let table = document.querySelector('table');
+
+// addEventListener 
 addBtn.addEventListener('click', addProduct);
-
-
-
 
 function saveProducts() {
     // save data to localStorage 
@@ -27,7 +30,7 @@ function loadProducts() {
         productsData = loadProducts
     }
     else {
-        saveProducts()
+        saveProducts();
     }
 }
 
@@ -83,7 +86,6 @@ function renderProducts() {
         edit_icon.classList.add('material-icons');
         edit_icon.textContent = "edit";
         edit_div.appendChild(edit_icon);
-        edit_div.addEventListener('click', editProduct);
 
         let view_div = document.createElement('div');
         view_div.classList.add('view');
@@ -149,6 +151,7 @@ function addProduct() {
 
     // save data 
     saveProducts()
+    window.location.reload();
 
     // clear form 
     inputId = '';
