@@ -78,7 +78,7 @@ function renderProducts() {
         delete_icon.classList.add('material-icons');
         delete_icon.textContent = 'delete';
         delete_div.appendChild(delete_icon);
-        // delete_div.addEventListener('click',removeQuestion)
+        delete_div.addEventListener('click',deleteProduct);
 
         let edit_div = document.createElement('div');
         edit_div.classList.add('edit');
@@ -169,6 +169,14 @@ let productsData = {
     products: [],
     latestId: null
 };
+function deleteProduct(event){
+    let index =(event.target.closest('tr')) ;
+    let confirmed = confirm("Are you sure you want to delete this product");
+    if (confirmed === true){
+        index.remove();
+    }
+    
+}
 loadProducts()
 
 renderProducts()
