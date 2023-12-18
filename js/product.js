@@ -1,6 +1,7 @@
 
 
 let inputName = document.getElementById('productName');
+// input
 let inputId = document.getElementById('productId');
 let textForm = document.querySelector('.add-product p');
 let inputPrice = document.getElementById('productPrice');
@@ -8,14 +9,26 @@ let inputQuant = document.getElementById('productQuantity');
 let inputcategory = document.getElementById('categories');
 let inputSold = document.getElementById('sold');
 let inputStock = document.getElementById('stock');
-let addBtn = document.querySelector('.add');
+// form View
+let formView = document.getElementById('main-dialog');
+let nameView = document.querySelector('.name span');
+let categoryView = document.querySelector('.cagegory span');
+let quantityview = document.querySelector('.quan span');
+let priceView = document.querySelector('.view-price span');
+let stockView = document.querySelector('.view-stock span');
+let soldView = document.querySelector('.view-sold span');
+
+// table 
 let tbody = document.querySelector('tbody');
 let table = document.querySelector('table');
+// button
+let cancel = document.querySelector('.close');
+console.log(cancel)
+let addBtn = document.querySelector('.add');
 let editBtn = document.querySelector('.cancel');
-let editIndex = null
-
-editBtn.addEventListener('click',editProduct);
+let editIndex = null;
 addBtn.addEventListener('click', addProduct);
+cancel.addEventListener('click', onCancel)
 
 
 
@@ -36,11 +49,11 @@ function loadProducts() {
     }
 }
 
-function hide(element){
+function hide(element) {
     element.style.display = 'none';
 
 }
-function show(element){
+function show(element) {
     element.style.display = 'block';
 
 }
@@ -57,7 +70,7 @@ function renderProducts() {
     // create all table rows depending data from product list 
     for (let product of productsData.products) {
         let tRow = document.createElement('tr');
-        tRow.dataset.id = product.id-1;
+        tRow.dataset.id = product.id - 1;
 
         let tdID = document.createElement('td');
         tdID.textContent = product.id;
@@ -97,7 +110,7 @@ function renderProducts() {
         edit_icon.classList.add('material-icons');
         edit_icon.textContent = "edit";
         edit_div.appendChild(edit_icon);
-        edit_div.addEventListener('click', updateProduct);
+        // edit_div.addEventListener('click', updateProduct);
 
         let view_div = document.createElement('div');
         view_div.classList.add('view');
@@ -105,6 +118,7 @@ function renderProducts() {
         view_icon.classList.add('material-icons');
         view_icon.textContent = "visibility";
         view_div.appendChild(view_icon);
+        view_div.addEventListener('click', viewInfo)
 
         let chart_div = document.createElement('div');
         chart_div.classList.add('chart');
@@ -126,11 +140,11 @@ function renderProducts() {
             tRow.appendChild(tdStock);
             tRow.appendChild(tdSold);
             tRow.appendChild(tdAction);
-    
+
             newTbody.appendChild(tRow);
             table.appendChild(newTbody);
         }
-        
+
 
     }
 }
@@ -172,20 +186,11 @@ function addProduct() {
     inputcategory.value = '';
     inputSold.value = '';
     inputStock.value = '';
-    
+
 
 }
-function updateProduct(index){
-    let loadData = localStorage.getItem('productsData');
-    if (loadData === null){
-        productsData = [];
-    }else{
-        productsData = JSON.parse(loadData);
-    }
-    inputName.value = productsData.products[index].name;
-    
-}
-function editProduct(event){
+
+function editProduct(event) {
     loadProducts()
     let newEdit = {
         id: editIndex,
@@ -194,17 +199,32 @@ function editProduct(event){
         quantity: inputQuant.value,
         category: inputcategory.value,
         sold: inputSold.value,
-        stock: inputStock.value, 
+        stock: inputStock.value,
     }
-    
-    productIndex = newEdit;   
-    textForm.textContent ="Edit Product";
+
+    productIndex = newEdit;
+    textForm.textContent = "Edit Product";
     hide(addBtn);
     show(editBtn);
 
 
 }
+function viewInfo(event) {
+    let index = event.target.closest('tr').dataset.id;
+    let productIndex = productsData.products[index];
+    show(formView);
+    console.log(productIndex)
+    nameView.textContent = productIndex.name;
+    categoryView.textContent = productIndex.category;
+    quantityview.textContent = productIndex.quantity;
+    priceView.textContent = productIndex.price;
+    stockView.textContent = productIndex.stock;
+    soldView.textContent = productIndex.sold;
 
+}
+function onCancel() {
+    hide(formView)
+}
 let productsData = {
     products: [],
     latestId: null
