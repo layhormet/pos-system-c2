@@ -1,20 +1,27 @@
 
-
+// form
 let inputName = document.getElementById('productName');
 let inputId = document.getElementById('productId');
-let textForm = document.querySelector('.add-product p');
 let inputPrice = document.getElementById('productPrice');
 let inputQuant = document.getElementById('productQuantity');
 let inputcategory = document.getElementById('categories');
 let inputSold = document.getElementById('sold');
 let inputStock = document.getElementById('stock');
-let addBtn = document.querySelector('.add');
+
+// tage 
+let textForm = document.querySelector('.add-product p');
+let formHeading = document.querySelector('.dialog h1')
+
+// table
 let tbody = document.querySelector('tbody');
 let table = document.querySelector('table');
-let editBtn = document.querySelector('.cancel');
+
+// button
+let addBtn = document.querySelector('.add');
+let editBtn = document.querySelector('.edit');
 let editIndex = null
 
-editBtn.addEventListener('click',editProduct);
+// addEventListener
 addBtn.addEventListener('click', addProduct);
 
 
@@ -97,7 +104,7 @@ function renderProducts() {
         edit_icon.classList.add('material-icons');
         edit_icon.textContent = "edit";
         edit_div.appendChild(edit_icon);
-        edit_div.addEventListener('click', updateProduct);
+        edit_div.addEventListener('click',editQuestion );
 
         let view_div = document.createElement('div');
         view_div.classList.add('view');
@@ -175,34 +182,38 @@ function addProduct() {
     
 
 }
-function updateProduct(index){
-    let loadData = localStorage.getItem('productsData');
-    if (loadData === null){
-        productsData = [];
-    }else{
-        productsData = JSON.parse(loadData);
+function editQuestion(event){
+    let nameProduct = event.target.parentElement.parentElement.parentElement.children[1].textContent;
+    let editBtn = document.querySelector('.edit');
+
+    for (let product of productsData.products){
+        if (product.name === nameProduct){
+            inputName.value = product.name;
+            inputPrice.value = product.price;
+            inputQuant.value = product.quantity;
+            inputcategory.value = product.category;
+            inputSold.value = product.sold;
+            inputStock.value = product.stock;
+
+            editBtn.addEventListener('click',() =>{
+                onCreate(product);
+                saveProducts();
+                window.location.reload();
+            });
+        }
     }
-    inputName.value = productsData.products[index].name;
-    
-}
-function editProduct(event){
-    loadProducts()
-    let newEdit = {
-        id: editIndex,
-        name: inputName.value,
-        price: inputPrice.value,
-        quantity: inputQuant.value,
-        category: inputcategory.value,
-        sold: inputSold.value,
-        stock: inputStock.value, 
-    }
-    
-    productIndex = newEdit;   
-    textForm.textContent ="Edit Product";
-    hide(addBtn);
     show(editBtn);
+    hide(addBtn);
+    formHeading.textContent = 'Edit Product';
 
-
+}
+function onCreate(product){
+    product.name = inputName.value;
+    product.category = inputcategory.value;
+    product.price = inputPrice.value;
+    product.quantity = inputQuant.value;
+    product.stock = inputStock.value;
+    product.sold = inputSold.value;
 }
 
 let productsData = {
