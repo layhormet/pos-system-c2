@@ -170,11 +170,12 @@ let productsData = {
     latestId: null
 };
 function deleteProduct(event){
-    let index =(event.target.closest('tr')) ;
+    let index =event.target.closest('tr') ;
     let confirmed = confirm("Are you sure you want to delete this product");
     if (confirmed === true){
         index.remove();
     }
+
     
 }
 loadProducts()
