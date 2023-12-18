@@ -211,16 +211,23 @@ function editProduct(event) {
 
 }
 function viewInfo(event) {
+    loadProducts()
     let index = event.target.closest('tr').dataset.id;
+    console.log(event.target.closest('tr'))
+
+  
     let productIndex = productsData.products[index];
-    show(formView);
     console.log(productIndex)
+    show(formView);
+
     nameView.textContent = productIndex.name;
     categoryView.textContent = productIndex.category;
     quantityview.textContent = productIndex.quantity;
     priceView.textContent = productIndex.price;
     stockView.textContent = productIndex.stock;
     soldView.textContent = productIndex.sold;
+
+    saveProducts()
 
 }
 function onCancel() {
