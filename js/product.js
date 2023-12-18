@@ -26,7 +26,7 @@ function saveProducts() {
 function loadProducts() {
     // load data from localStorage 
     let loadProducts = JSON.parse(localStorage.getItem('productsData'));
-    if (loadProducts != undefined) {
+    if (loadProducts != null) {
         productsData = loadProducts
     }
     else {
@@ -170,12 +170,15 @@ let productsData = {
     latestId: null
 };
 function deleteProduct(event){
+    loadProducts()
     let index =(event.target.closest('tr')) ;
     let confirmed = confirm("Are you sure you want to delete this product");
     if (confirmed === true){
         index.remove();
     }
-    
+    productsData.products.splice(index, 1);
+    saveProducts();
+
 }
 loadProducts()
 
