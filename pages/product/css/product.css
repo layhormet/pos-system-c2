@@ -272,12 +272,12 @@ input:focus {
     border-color: var(--main-color-light);
 }
 
-.dialog menu .cancel {
+.dialog menu .edit {
     background-color: red;
     margin-right: 30px;
 }
 
-.dialog menu .cancel,
+.dialog menu .edit,
 .dialog menu .add {
     color: white;
     border: none;
