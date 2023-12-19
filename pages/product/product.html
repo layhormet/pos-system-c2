@@ -57,9 +57,22 @@
             </section>
             <menu>
                 <button class="cancel" style="display: none;">Edit</button>
-                <button  class="add">Add product</button>
+                <button class="add">Add product</button>
             </menu>
         </div>
+        <form action="order" style="display: none;" class="addToCart">
+            <h1>list order</h1>
+            <div class="lsitorder">
+                <i class="material-icons">delete</i>
+                <div class="name_product">
+                    <div class="name">t-shirt</div>
+                </div>
+                <div class="quantity">quantity=1</div>
+                <div class="Price">5$</div>
+            </div>
+            <div class="total">TOTAL=5$</div>
+            <button id="btn-pay">Pay</button>
+        </form>
         <div class="main_product">
             <div class="banner-search">
                 <div class="add-product">
@@ -86,13 +99,14 @@
                         </tr>
                     </thead>
                     <tbody>
-    
+
                     </tbody>
                 </table>
             </div>
+        </div>
     </div>
 
-    
+
 </body>
 
 </html>
