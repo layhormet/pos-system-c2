@@ -1,5 +1,4 @@
-
-
+let formAdd = document.querySelector('#questions-dialog');
 let inputName = document.getElementById('productName');
 let inputId = document.getElementById('productId');
 let inputPrice = document.getElementById('productPrice');
@@ -12,9 +11,18 @@ let formView = document.querySelector('#main-dialog')
 let nameView = document.querySelector('.name span');
 let categoryView = document.querySelector('.cagegory span');
 let priceView = document.querySelector('.view-price span');
-let quantityview =document.querySelector('.quan span');
-let stockView =document.querySelector('.view-stock span');
+let quantityview = document.querySelector('.quan span');
+let stockView = document.querySelector('.view-stock span');
 let soldView = document.querySelector('.view-sold span');
+
+let formOrder = document.querySelector('.order');
+let boxes = document.querySelector('.boxes');
+let card = document.querySelector('.card');
+let payBtn = document.querySelector('.order button');
+let totalSpan = document.querySelector('.total span');
+
+
+// let payBtn = d
 
 
 // button 
@@ -41,8 +49,9 @@ let editBtn = document.querySelector('.edit');
 let editIndex = null
 
 // addEventListener
-closeBtn.addEventListener('click',onCancel)
+closeBtn.addEventListener('click', onCancel)
 addBtn.addEventListener('click', addProduct);
+// payBtn.addEventListener('click',getValue)
 
 function saveProducts() {
     // save data to localStorage 
@@ -115,7 +124,7 @@ function renderProducts() {
         delete_icon.classList.add('material-icons');
         delete_icon.textContent = 'delete';
         delete_div.appendChild(delete_icon);
-        delete_div.addEventListener('click',deleteProduct);
+        delete_div.addEventListener('click', deleteProduct);
 
         let edit_div = document.createElement('div');
         edit_div.classList.add('edit');
@@ -124,7 +133,7 @@ function renderProducts() {
         edit_icon.textContent = "edit";
         edit_div.appendChild(edit_icon);
         edit_div.id = i;
-        edit_div.addEventListener('click',editQuestion);
+        edit_div.addEventListener('click', editQuestion);
 
 
         let view_div = document.createElement('div');
@@ -133,7 +142,7 @@ function renderProducts() {
         view_icon.classList.add('material-icons');
         view_icon.textContent = "visibility";
         view_div.appendChild(view_icon);
-        view_div.addEventListener('click',viewInfo)
+        view_div.addEventListener('click', viewInfo)
 
         let chart_div = document.createElement('div');
         chart_div.classList.add('chart');
@@ -141,6 +150,7 @@ function renderProducts() {
         chart_icon.classList.add('material-icons');
         chart_icon.textContent = 'shopping_cart';
         chart_div.appendChild(chart_icon);
+        chart_div.addEventListener('click', rendOrder)
 
         tdAction.appendChild(delete_div);
         tdAction.appendChild(edit_div);
@@ -186,14 +196,12 @@ function addProduct() {
         sold: inputSold.value,
         stock: inputStock.value,
     }
+    if (inputName.value != '' && inputPrice.value != '' && inputQuant.value != '' && inputcategory.value != '' && inputSold.value != '' && inputStock.value != '') {
+        productsData.products.push(product);
+        saveProducts();
+    }
 
-    // push new product to list product 
-    productsData.products.push(product);
 
-    // save data 
-
-
-    saveProducts();
     window.location.reload();
 
     // clear form 
@@ -209,22 +217,20 @@ function addProduct() {
 }
 
 
-
-function deleteProduct(event){
-    let index =event.target.closest('tr') ;
+function deleteProduct(event) {
+    let index = event.target.closest('tr');
     let confirmed = confirm("Are you sure you want to delete this product");
-    if (confirmed === true){
+    if (confirmed === true) {
         index.remove();
     }
     productsData.products.splice(index, 1);
     saveProducts();
 
-    
+
 }
 function editQuestion(index) {
 
     let editBtn = document.querySelector('.edit');
-
     inputName.value = productsData.products[index].name;
     inputPrice.value = productsData.products[index].price;
     inputQuant.value = productsData.products[index].quantity;
@@ -251,11 +257,8 @@ function editQuestion(index) {
 function viewInfo(event) {
     loadProducts()
     let index = event.target.closest('tr').dataset.id;
-    console.log(index)
 
-  
     let productIndex = productsData.products[index];
-    console.log(productIndex.name)
     show(formView);
 
     nameView.textContent = productIndex.name;
@@ -265,7 +268,7 @@ function viewInfo(event) {
     stockView.textContent = productIndex.stock;
     soldView.textContent = productIndex.sold;
 
-    saveProducts()
+    // saveProducts()
 
 }
 let productsData = {
@@ -286,6 +289,96 @@ for (let btn of editBnt) {
         saveProducts()
     })
 }
+function rendOrder(event) {
+    loadProducts();
+    show(formOrder);
+    hide(formAdd)
+    let index = event.target.closest('tr').dataset.id;
+
+    card.remove();
+    let newCard = document.createElement('div');
+    newCard.classList.add('card')
+    let deleteIcon = document.createElement('div');
+    deleteIcon.classList.add('deleteIcon');
+
+    let icon = document.createElement('i');
+    icon.classList.add('material-icons');
+    icon.textContent = 'delete';
+
+    deleteIcon.appendChild(icon);
+
+    let namePd = document.createElement('div');
+    namePd.classList.add('namePd');
+
+    let spanPd = document.createElement('span');
+    spanPd.textContent = productsData.products[index].name;
+
+    namePd.appendChild(spanPd);
+
+    let qtyPd = document.createElement('div');
+    qtyPd.classList.add('qty');
+
+    let inputQty = document.createElement('input');
+    inputQty.setAttribute('type', 'number');
+    inputQty.setAttribute('class', 'nbProduct');
+    inputQty.value = productsData.products[index].quantity;
+
+    qtyPd.appendChild(inputQty);
+
+    let pricePd = document.createElement('div');
+    pricePd.classList.add('pricePd');
+
+
+    let spanPrice = document.createElement('span');
+    spanPrice.classList.add('pdPrice');
+    spanPrice.textContent = productsData.products[index].price + "$";
+
+    pricePd.appendChild(spanPrice);
+
+    newCard.appendChild(deleteIcon);
+    newCard.appendChild(namePd);
+    newCard.appendChild(qtyPd);
+    newCard.appendChild(pricePd);
+
+    boxes.appendChild(newCard);
+    saveProducts();
+    // let nbPd = document.querySelectorAll('#nbProduct');
+    // let priceValue = document.querySelectorAll('.pdPrice');
+    // // let total = 0;
+    // // for (let i = 0; i< priceValue.length; i++){
+    // //     let sum = 0;
+    // //     // sum += parseInt(priceValue[i].textContent.replace('$',''))* getValue();
+    // //     sum += parseInt(priceValue[i].textContent.replace('$','')) * parseInt(nbPd[i].addEventListener('oninput',getValue));
+    // //     // sum += parseInt(priceValue[i].textContent.replace('$',''))* nbPd[i]
+    // //     // console.log(sum);
+    // //     // console.log(nbPd[i].addEventListener('oninput',getValue))
+    // //     total+=sum;
+    // //     totalSpan.textContent = total + '$';
+    // //     function getValue (){
+    // //         for (let nb of nbPd){
+    // //             console.log(nb)
+    // //         }
+    // //     }
+    // // }
+    // function updateValues() {
+    //     let inputFields = document.getElementsByClassName("nbProduct");
+    //     let values = Array.from(inputFields).map(function(input) {
+    //         return input.value;
+    //     });
+    //     let output = document.getElementById("output");
+    //     // output.textContent = "Values: " + values.join(", ");
+    //     for (let i = 0; i < priceValue.length; i++){
+    //         let sum = 0;
+    //         sum += values.join(", ");
+    //         console.log(values.join(", "))
+    //     }
+    // }
+    
+    
+}
+
+
+
 
 
 
