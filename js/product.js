@@ -8,6 +8,15 @@ let inputcategory = document.getElementById('categories');
 let inputSold = document.getElementById('sold');
 let inputStock = document.getElementById('stock');
 
+let formView = document.querySelector('#main-dialog')
+let nameView = document.querySelector('.name span');
+let categoryView = document.querySelector('.cagegory span');
+let priceView = document.querySelector('.view-price span');
+let quantityview =document.querySelector('.quan span');
+let stockView =document.querySelector('.view-stock span');
+let soldView = document.querySelector('.view-sold span');
+
+
 // button 
 let addBtns = document.querySelector('.add');
 
@@ -26,12 +35,13 @@ let tbody = document.querySelector('tbody');
 let table = document.querySelector('table');
 
 // button
+let closeBtn = document.querySelector('.close');
 let addBtn = document.querySelector('.add');
 let editBtn = document.querySelector('.edit');
 let editIndex = null
 
 // addEventListener
-
+closeBtn.addEventListener('click',onCancel)
 addBtn.addEventListener('click', addProduct);
 
 function saveProducts() {
@@ -49,7 +59,9 @@ function loadProducts() {
         saveProducts();
     }
 }
-
+function onCancel() {
+    hide(formView)
+}
 function hide(element) {
     element.style.display = 'none';
 
@@ -120,6 +132,7 @@ function renderProducts() {
         view_icon.classList.add('material-icons');
         view_icon.textContent = "visibility";
         view_div.appendChild(view_icon);
+        view_div.addEventListener('click',viewInfo)
 
         let chart_div = document.createElement('div');
         chart_div.classList.add('chart');
@@ -247,6 +260,26 @@ for (let btn of editBnt) {
         editQuestion(btn.id)
         saveProducts()
     })
+}
+function viewInfo(event) {
+    loadProducts()
+    let index = event.target.closest('tr').dataset.id;
+    console.log(index)
+
+  
+    let productIndex = productsData.products[index];
+    console.log(productIndex.name)
+    show(formView);
+
+    nameView.textContent = productIndex.name;
+    categoryView.textContent = productIndex.category;
+    quantityview.textContent = productIndex.quantity;
+    priceView.textContent = productIndex.price;
+    stockView.textContent = productIndex.stock;
+    soldView.textContent = productIndex.sold;
+
+    saveProducts()
+
 }
 
 
