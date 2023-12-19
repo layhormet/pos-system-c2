@@ -123,7 +123,8 @@ function renderProducts() {
         edit_icon.classList.add('material-icons');
         edit_icon.textContent = "edit";
         edit_div.appendChild(edit_icon);
-        edit_div.id = i
+        edit_div.id = i;
+        edit_div.addEventListener('click',editQuestion);
 
 
         let view_div = document.createElement('div');
@@ -207,6 +208,20 @@ function addProduct() {
 
 
 }
+
+
+
+function deleteProduct(event){
+    let index =event.target.closest('tr') ;
+    let confirmed = confirm("Are you sure you want to delete this product");
+    if (confirmed === true){
+        index.remove();
+    }
+    productsData.products.splice(index, 1);
+    saveProducts();
+
+    
+}
 function editQuestion(index) {
 
     let editBtn = document.querySelector('.edit');
@@ -231,25 +246,10 @@ function editQuestion(index) {
         saveProducts();
         window.location.reload();
     });
+
 }
+let editBnt = document.querySelectorAll("tbody tr td .edit");
 
-let productsData = {
-    products: [],
-    latestId: null
-};
-function deleteProduct(event){
-    let index =event.target.closest('tr') ;
-    let confirmed = confirm("Are you sure you want to delete this product");
-    if (confirmed === true){
-        index.remove();
-    }
-    productsData.products.splice(index, 1);
-    saveProducts();
-
-    
-}
-
-let editBnt = document.querySelectorAll("tr td .edit")
 for (let btn of editBnt) {
     btn.addEventListener("click", () => {
         show(editBtn);
@@ -279,6 +279,10 @@ function viewInfo(event) {
     saveProducts()
 
 }
+let productsData = {
+    products: [],
+    latestId: null
+};
 loadProducts()
 
 renderProducts()
