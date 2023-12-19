@@ -60,7 +60,7 @@ function loadProducts() {
     }
 }
 function onCancel() {
-    hide(formView)
+    hide(formView);
 }
 function hide(element) {
     element.style.display = 'none';
@@ -155,7 +155,6 @@ function renderProducts() {
             tRow.appendChild(tdStock);
             tRow.appendChild(tdSold);
             tRow.appendChild(tdAction);
-
             newTbody.appendChild(tRow);
             table.appendChild(newTbody);
             i++
@@ -248,17 +247,7 @@ function editQuestion(index) {
     });
 
 }
-let editBnt = document.querySelectorAll("tbody tr td .edit");
 
-for (let btn of editBnt) {
-    btn.addEventListener("click", () => {
-        show(editBtn);
-        hide(addBtn);
-        formHeading.textContent = 'Edit Product';
-        editQuestion(btn.id)
-        saveProducts()
-    })
-}
 function viewInfo(event) {
     loadProducts()
     let index = event.target.closest('tr').dataset.id;
@@ -286,6 +275,17 @@ let productsData = {
 loadProducts()
 
 renderProducts()
+let editBnt = document.querySelectorAll("tbody tr td .edit");
+
+for (let btn of editBnt) {
+    btn.addEventListener("click", () => {
+        show(editBtn);
+        hide(addBtn);
+        formHeading.textContent = 'Edit Product';
+        editQuestion(btn.id)
+        saveProducts()
+    })
+}
 
 
 
