@@ -248,9 +248,7 @@ function deleteProduct(event){
 
     
 }
-loadProducts()
 
-renderProducts()
 let editBnt = document.querySelectorAll("tr td .edit")
 for (let btn of editBnt) {
     btn.addEventListener("click", () => {
@@ -281,6 +279,9 @@ function viewInfo(event) {
     saveProducts()
 
 }
+loadProducts()
+
+renderProducts()
 
 
 
