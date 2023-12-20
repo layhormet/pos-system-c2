@@ -6,6 +6,8 @@ let inputQuant = document.getElementById('productQuantity');
 let inputcategory = document.getElementById('categories');
 let inputSold = document.getElementById('sold');
 let inputStock = document.getElementById('stock');
+let search = document.querySelector('.search');
+
 
 let formView = document.querySelector('#main-dialog')
 let nameView = document.querySelector('.name span');
@@ -43,12 +45,15 @@ let tbody = document.querySelector('tbody');
 let table = document.querySelector('table');
 
 // button
+
 let closeBtn = document.querySelector('.close');
 let addBtn = document.querySelector('.add');
 let editBtn = document.querySelector('.edit');
 let editIndex = null
 
 // addEventListener
+payBtn.addEventListener('click', alertPrice);
+search.addEventListener('keyup',searchName)
 closeBtn.addEventListener('click', onCancel)
 addBtn.addEventListener('click', addProduct);
 // payBtn.addEventListener('click',getValue)
@@ -195,6 +200,7 @@ function addProduct() {
         category: inputcategory.value,
         sold: inputSold.value,
         stock: inputStock.value,
+        count:0,
     }
     if (inputName.value != '' && inputPrice.value != '' && inputQuant.value != '' && inputcategory.value != '' && inputSold.value != '' && inputStock.value != '') {
         productsData.products.push(product);
@@ -214,6 +220,7 @@ function addProduct() {
     inputStock.value = '';
 
 
+
 }
 
 
@@ -222,8 +229,8 @@ function deleteProduct(event) {
     let confirmed = confirm("Are you sure you want to delete this product");
     if (confirmed === true) {
         index.remove();
+        productsData.products.splice(index, 1);
     }
-    productsData.products.splice(index, 1);
     saveProducts();
 
 
@@ -341,46 +348,54 @@ function rendOrder(event) {
     newCard.appendChild(pricePd);
 
     boxes.appendChild(newCard);
+    productsData.products[index].count +=1
     saveProducts();
-    // let nbPd = document.querySelectorAll('#nbProduct');
-    // let priceValue = document.querySelectorAll('.pdPrice');
-    // // let total = 0;
-    // // for (let i = 0; i< priceValue.length; i++){
-    // //     let sum = 0;
-    // //     // sum += parseInt(priceValue[i].textContent.replace('$',''))* getValue();
-    // //     sum += parseInt(priceValue[i].textContent.replace('$','')) * parseInt(nbPd[i].addEventListener('oninput',getValue));
-    // //     // sum += parseInt(priceValue[i].textContent.replace('$',''))* nbPd[i]
-    // //     // console.log(sum);
-    // //     // console.log(nbPd[i].addEventListener('oninput',getValue))
-    // //     total+=sum;
-    // //     totalSpan.textContent = total + '$';
-    // //     function getValue (){
-    // //         for (let nb of nbPd){
-    // //             console.log(nb)
-    // //         }
-    // //     }
-    // // }
-    // function updateValues() {
-    //     let inputFields = document.getElementsByClassName("nbProduct");
-    //     let values = Array.from(inputFields).map(function(input) {
-    //         return input.value;
-    //     });
-    //     let output = document.getElementById("output");
-    //     // output.textContent = "Values: " + values.join(", ");
-    //     for (let i = 0; i < priceValue.length; i++){
-    //         let sum = 0;
-    //         sum += values.join(", ");
-    //         console.log(values.join(", "))
-    //     }
-    // }
-    
-    
+    let priceValue = document.querySelectorAll('.pdPrice');
+    let nbProduct = document.querySelectorAll('.nbProduct')
+    let total = 0;
+    let newSold = {};
+    for (let i = 0; i < priceValue.length; i++) {
+        let sum = 0;
+        sum += parseInt(priceValue[i].textContent.replace('$', '')) * parseInt(nbProduct[i].value);
+        total += sum;
+        saveProducts();
+        
+
+    }
+    totalSpan.textContent = total + ' $';
+
+    saveProducts();
+
+}
+
+function alertPrice() {
+    loadProducts();
+    let alert = confirm('You want to pay it now?')
+    if (alert === true) {
+        hide(formOrder);
+        show(formAdd)
+    }
+
 }
 
 
 
+function searchName(e) {
+    loadProducts()
+    let text = e.target.value;
+    let trs = document.querySelectorAll('tbody tr');
 
+    for (let tr of trs) {
+        let proName = tr.firstElementChild.nextElementSibling.textContent;
+        // console.log(proName)
+        if (proName.indexOf(text) !== -1) {
+            tr.style.display = '';
+        } else {
+            tr.style.display = 'none';
+        }
+    }
 
-
-
-
+}
+function closeWindow(){
+    window.close();
+}
