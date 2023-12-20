@@ -86,12 +86,11 @@ ul li  .material-icons {
 
 .table-item thead tr th {
     text-align: center;
-    padding: 26px 10px;
+    padding: 18px 10px;
 
 }
 
 .table-item tbody tr {
-
     border-bottom: 2px solid teal;
 }
 
@@ -100,8 +99,6 @@ ul li  .material-icons {
     color: white;
     padding: 30px 90px;
     border: 2px rgb(235, 36, 36);
-    
-    
 
 }
 .table-item tbody{

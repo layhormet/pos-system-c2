@@ -53,7 +53,7 @@ let editIndex = null
 
 // addEventListener
 payBtn.addEventListener('click', alertPrice);
-search.addEventListener('keyup',searchName)
+search.addEventListener('keyup', searchName)
 closeBtn.addEventListener('click', onCancel)
 addBtn.addEventListener('click', addProduct);
 // payBtn.addEventListener('click',getValue)
@@ -200,7 +200,7 @@ function addProduct() {
         category: inputcategory.value,
         sold: inputSold.value,
         stock: inputStock.value,
-        count:0,
+        count: 0,
     }
     if (inputName.value != '' && inputPrice.value != '' && inputQuant.value != '' && inputcategory.value != '' && inputSold.value != '' && inputStock.value != '') {
         productsData.products.push(product);
@@ -348,7 +348,7 @@ function rendOrder(event) {
     newCard.appendChild(pricePd);
 
     boxes.appendChild(newCard);
-    productsData.products[index].count +=1
+    productsData.products[index].count += 1
     saveProducts();
     let priceValue = document.querySelectorAll('.pdPrice');
     let nbProduct = document.querySelectorAll('.nbProduct')
@@ -359,12 +359,14 @@ function rendOrder(event) {
         sum += parseInt(priceValue[i].textContent.replace('$', '')) * parseInt(nbProduct[i].value);
         total += sum;
         saveProducts();
-        
+
 
     }
     totalSpan.textContent = total + ' $';
 
     saveProducts();
+
+
 
 }
 
@@ -373,7 +375,7 @@ function alertPrice() {
     let alert = confirm('You want to pay it now?')
     if (alert === true) {
         hide(formOrder);
-        show(formAdd)
+        show(formAdd);
     }
 
 }
@@ -396,6 +398,6 @@ function searchName(e) {
     }
 
 }
-function closeWindow(){
+function closeWindow() {
     window.close();
 }
