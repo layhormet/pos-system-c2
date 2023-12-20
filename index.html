@@ -4,32 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POS system</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="css/main.css">
-    <script defer src="js/main.js"></script>
+    <script defer src="main.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
+   
     <div class="top-banner">
         <h1>POS SYSTEM</h1>
-        <div class="page">
-            <button​ class="dashboard-btn"><a href="index.html"></a>Dashboard</button>
-        </div>
-        <div class="page">
-            <button class="category-btn"><a href="/pages/category/category.html"></a>Category</button>
-        </div>
-        <div class="page">
-            <button class="product-btn"><a href="/pages/addProduct/product.html"></a>All product</button>
-        </div>
-        <div class="page">
-            <i class="material-icons">person_add</i>
-            <button class="customer-btn"><a href="/pages/customer/customer.html"></a>Customers</button>
-        </div>
-        <div class="closes">
-            <button class="close-btn">Close</button>
+        <div class="nav">
+            <ul>
+                <li><a href="../../index.html">Dashboard</a></li>
+                <li><a href="../category/category.html">Category</a></li>
+                <li><a href="../product/product.html">Product</a></li>
+                <li><a href="./pages/customer/customer.html">Customer</a></li>
+                <li><i class="material-icons">cancel</i></li>
+            </ul>
         </div>
     </div>
-</body>
 
-</html>
+    <div class="dashboard">
+        <div class="box-top">
+            <div class="boxs">
+                <p>In stock</p>
+                <h1>150</h1>
+            </div>
+            <div class="boxs">
+                <p>Categories</p>
+                <h1>4</h1>
+            </div>
+            <div class="boxs">
+                <p>Sold</p>
+                <h1>100</h1>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="best-selling">
+                <h1>The Top Selling in our shop</h1>
+            </div>
+            <div class="table">
+                <table class="board">
+                    <thead>
+                        <tr>
+                            <th>ID product</th>
+                            <th>Name's product</th>
+                            <th>Category</th>
+                            <th>Number of sold</th>
+                        </tr>
+            
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>T-shirt</td>
+                            <td>Man</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>T-shirt</td>
+                            <td>Woman</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>T-shirt</td>
+                            <td>Woman</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>001</td>
+                            <td>T-shirt</td>
+                            <td>Woman</td>
+                            <td>50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+
+    </div>

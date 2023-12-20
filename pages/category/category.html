@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <link rel="stylesheet" href="../category/css/category.css">
+    <script src="../../js/category.js" defer></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="top-banner">
+        <h1>POS SYSTEM</h1>
+        <div class="nav">
+            <ul>
+                <li><a href="../../index.html">Dashboard</a></li>
+                <li><a href="../category/category.html">Category</a></li>
+                <li><a href="../product/product.html">Product</a></li>
+                <li><a href="../customer/customer.html">Customer</a></li>
+                <li><i class="material-icons">cancel</i></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="category-dialog" style="display:none">
+        <div class="dialog">
+            <header>Add Category</header>
+            <section>
+                <div class="input-item">
+                    <label for="name">Name: </label>
+                    <input id="name" type="text" >
+                </div>
+                <div class="input-item">
+                    <label for="Category">Price: </label>
+                    <input id="price" type="number">
+                </div>
+            </section>
+            
+            <menu>
+                <button onclick="OnCancel()">Cancel</button>
+                <button onclick="OnAdd()">Add</button>
+            </menu>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="head-category">
+            <button id="btn-add"><span class="material-symbols-outlined"></span> Add Category</button>
+        </div>
+        <div class="table-item">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Category Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</main>
+
+</body>
+
+</html>
+
