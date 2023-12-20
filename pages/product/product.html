@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS system</title>
+    <link rel="stylesheet" href="css/product.css">
+    <script defer src="../../js/product.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="top-banner">
+        <h1>POS SYSTEM</h1>
+        <div class="nav">
+            <ul>
+                <li><a href="../../index.html">Dashboard</a></li>
+                <li><a href="../category/category.html">Category</a></li>
+                <li><a href="../product/product.html">Product</a></li>
+                <li><i class="material-icons">cancel</i></li>
+            </ul>
+        </div>
+    </div>
+    <!-- formadd -->
+    <main>
+        <div id="questions-dialog">
+            <div class="dialog">
+                <h1>Add Product</h1>
+                <section>
+                    <label for="productName">Product Name:</label>
+                    <input type="text" id="productName" required>
+    
+                    <label for="productPrice">Product Price:</label>
+                    <input type="number" id="productPrice" required>
+    
+                    <label for="productQuantity">Product Quantity:</label>
+                    <input type="number" id="productQuantity" required>
+    
+                    <label for="productcategories">Product categories:</label>
+                    <select id="categories" required>
+                        <option value="">Select categories</option>
+                        <option value="Men">Men</option>
+                        <option value="Woman">Women</option>
+                    </select>
+                    <label for="stock">In stock</label>
+                    <input type="number" id="stock" required>
+    
+                    <label for="Sold">Sold</label>
+                    <input type="number" id="sold" required>
+                </section>
+                <menu>
+                    <button class="edit" style="display: none;">Edit</button>
+                    <button  class="add">Add product</button>
+                </menu>
+            </div>
+        </div>
+        <div id="main-dialog" style="display: none;">
+            <div class="dialogs">
+                <h1>View Product</h1>
+                <section>
+                    <div class="name">
+                        <p>Product's name:</p>
+                        <span>Phanit</span>
+                    </div>
+                    <div class="cagegory">
+                        <p>Product's category: </p>
+                        <span></span>
+                    </div>
+                    <div class="quan">
+                        <p>Product's quantity</p>
+                        <span></span>
+                    </div>
+                    <div class="view-price">
+                        <p>Product's price:</p>
+                        <span></span>
+                    </div>
+    
+                    <div class="view-stock">
+                        <p>In stock :</p>
+                        <span></span>
+                    </div>
+                    <div class="view-sold">
+                        <p>Sold :</p>
+                        <span></span>
+                    </div>
+                </section>
+                <menu>
+                    <button class="close">Cancel</button>
+                </menu>
+            </div>
+        </div>
+        <div class="order" style="display: none;">
+            <h1>List Order</h1>
+            <div class="boxes">
+                <div class="card">
+                    <div class="deleteIcon">
+                        <i class="material-icons">delete</i>
+                    </div>
+                    <div class="namePd">
+                        <span>hjkl;</span>
+                    </div>
+                    <div class="qty">
+                        <input type="number" class="nbProduct">
+                    </div>
+                    <div class="pricePd">
+                        <span class="pdPrice">sdfghj</span>
+                    </div>
+                </div>
+            </div>
+            <div class="total">
+                <p>Total price :</p>
+                <span></span>
+            </div>
+            <button>Pay Now</button>
+        </div>
+        <div class="main_product">
+            <div class="banner-search">
+                <div class="add-product">
+                    <p>Add Product</p>
+                    <i class="material-icons">add</i>
+                </div>
+                <div class="search-box">
+                    <input type="search" name="search" class="search" placeholder="Search product...">
+                    <i class="material-icons">search</i>
+                </div>
+            </div>
+            <div class="table">
+                <table class="box-product">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product's name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Sold</th>
+                            <th>In stock</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main> 
+
+</body>
+
+</html>
