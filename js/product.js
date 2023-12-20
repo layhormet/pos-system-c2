@@ -115,10 +115,10 @@ function renderProducts() {
         tdQuant.textContent = product.quantity;
 
         let tdSold = document.createElement('td');
-        tdSold.textContent = product.sold;
+        tdSold.textContent = product.stock;
 
         let tdStock = document.createElement('td');
-        tdStock.textContent = product.stock;
+        tdStock.textContent = product.sold;
 
         let tdAction = document.createElement('td');
         tdAction.classList.add('action');
@@ -167,8 +167,8 @@ function renderProducts() {
             tRow.appendChild(tdCategory);
             tRow.appendChild(tdPrice);
             tRow.appendChild(tdQuant);
-            tRow.appendChild(tdStock);
             tRow.appendChild(tdSold);
+            tRow.appendChild(tdStock);
             tRow.appendChild(tdAction);
             newTbody.appendChild(tRow);
             table.appendChild(newTbody);

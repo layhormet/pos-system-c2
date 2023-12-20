@@ -50,8 +50,7 @@ function renderCategory() {
 
         let tdName = document.createElement("td");
         tdName.textContent = data.name;
-        let tdPrice = document.createElement("td");
-        tdPrice.textContent = data.price;
+       
         
         
         let tdAction = document.createElement("td");
@@ -71,7 +70,6 @@ function renderCategory() {
 
         tRows.appendChild(tdId)
         tRows.appendChild(tdName);
-        tRows.appendChild(tdPrice)
         tRows.appendChild(tdAction)
 
         Newtbody.appendChild(tRows);
@@ -125,7 +123,6 @@ function OnAdd() {
     let categories = {};
     categories.id = categoryId;
     categories.name = document.getElementById("name").value;
-    categories.price = document.getElementById("price").value;
     if (editIndex === null) {
         CategoryData.category.push(categories);
     }
