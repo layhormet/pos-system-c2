@@ -53,7 +53,7 @@ let editIndex = null
 
 // addEventListener
 payBtn.addEventListener('click', alertPrice);
-search.addEventListener('keyup',searchName)
+search.addEventListener('keyup', searchName)
 closeBtn.addEventListener('click', onCancel)
 addBtn.addEventListener('click', addProduct);
 // payBtn.addEventListener('click',getValue)
@@ -67,7 +67,7 @@ function loadProducts() {
     // load data from localStorage 
     let loadProducts = JSON.parse(localStorage.getItem('productsData'));
     if (loadProducts != undefined) {
-        productsData = loadProducts
+        productsData = loadProducts;
     }
     else {
         saveProducts();
@@ -175,7 +175,7 @@ function renderProducts() {
             i++
         }
 
-        saveProducts()
+        saveProducts();
 
     }
 }
@@ -200,16 +200,14 @@ function addProduct() {
         category: inputcategory.value,
         sold: inputSold.value,
         stock: inputStock.value,
-        count:0,
+        soldOut: 0,
     }
     if (inputName.value != '' && inputPrice.value != '' && inputQuant.value != '' && inputcategory.value != '' && inputSold.value != '' && inputStock.value != '') {
         productsData.products.push(product);
         saveProducts();
     }
 
-
     window.location.reload();
-
     // clear form 
     inputId = '';
     inputName.value = '';
@@ -219,10 +217,7 @@ function addProduct() {
     inputSold.value = '';
     inputStock.value = '';
 
-
-
 }
-
 
 function deleteProduct(event) {
     let index = event.target.closest('tr');
@@ -275,16 +270,11 @@ function viewInfo(event) {
     stockView.textContent = productIndex.stock;
     soldView.textContent = productIndex.sold;
 
-    // saveProducts()
-
 }
-let productsData = {
-    products: [],
-    latestId: null
-};
-loadProducts()
 
-renderProducts()
+loadProducts();
+
+renderProducts();
 let editBnt = document.querySelectorAll("tbody tr td .edit");
 
 for (let btn of editBnt) {
@@ -299,7 +289,8 @@ for (let btn of editBnt) {
 function rendOrder(event) {
     loadProducts();
     show(formOrder);
-    hide(formAdd)
+    hide(formAdd);
+
     let index = event.target.closest('tr').dataset.id;
 
     card.remove();
@@ -335,7 +326,6 @@ function rendOrder(event) {
     let pricePd = document.createElement('div');
     pricePd.classList.add('pricePd');
 
-
     let spanPrice = document.createElement('span');
     spanPrice.classList.add('pdPrice');
     spanPrice.textContent = productsData.products[index].price + "$";
@@ -348,19 +338,17 @@ function rendOrder(event) {
     newCard.appendChild(pricePd);
 
     boxes.appendChild(newCard);
-    productsData.products[index].count +=1
+    productsData.products[index].soldOut += parseInt(productsData.products[index].quantity);
+
     saveProducts();
     let priceValue = document.querySelectorAll('.pdPrice');
     let nbProduct = document.querySelectorAll('.nbProduct')
     let total = 0;
-    let newSold = {};
     for (let i = 0; i < priceValue.length; i++) {
         let sum = 0;
         sum += parseInt(priceValue[i].textContent.replace('$', '')) * parseInt(nbProduct[i].value);
         total += sum;
         saveProducts();
-        
-
     }
     totalSpan.textContent = total + ' $';
 
@@ -375,11 +363,7 @@ function alertPrice() {
         hide(formOrder);
         show(formAdd)
     }
-
 }
-
-
-
 function searchName(e) {
     loadProducts()
     let text = e.target.value;
@@ -396,6 +380,5 @@ function searchName(e) {
     }
 
 }
-function closeWindow(){
-    window.close();
-}
+
+
